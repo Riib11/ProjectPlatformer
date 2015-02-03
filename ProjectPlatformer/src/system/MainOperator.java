@@ -7,8 +7,10 @@ import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import listeners.PlatformerActionListener;
 import screens.GameScreen;
 import screens.OptionsScreen;
+import screens.Screen;
 import screens.StartScreen;
 
 @SuppressWarnings("serial")
@@ -34,7 +36,7 @@ public class MainOperator extends JFrame {
 	}
 
 	private static void start() {
-		timer = new Timer
+		timer = new Timer(10, new PlatformerActionListener());
 		activeComponent = ActiveComponents.START;
 	}
 
@@ -54,7 +56,29 @@ public class MainOperator extends JFrame {
 		gameScreen = new GameScreen();
 	}
 
+	// Publics
+	public Screen getCurrentScreen() {
+		switch (activeComponent) {
+		case START:
+			return this.startScreen;
+		case OPTIONS:
+			return this.optionsScreen;
+		case GAME:
+			return this.gameScreen;
+		}
+		return null;
+	}
+
+	public void setCurrentScreen(ActiveComponents actcomp) {
+		getCurrentScreen().setActive(false);
+
+	}
+
 	// TODO Finish this Screen/Component thing
+
+	public void update(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+	}
 
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;

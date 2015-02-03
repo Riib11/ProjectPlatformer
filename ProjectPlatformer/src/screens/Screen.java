@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,6 +13,8 @@ import javax.swing.JComponent;
 
 public class Screen extends JComponent implements KeyListener, ActionListener,
 		MouseListener, MouseMotionListener {
+
+	private boolean isActive;
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -69,6 +72,24 @@ public class Screen extends JComponent implements KeyListener, ActionListener,
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setActive(boolean b) {
+		isActive = b;
+		setVisible(b);
+	}
+
+	@Override
+	public void update(Graphics g) {
+		if (isActive) {
+
+		}
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		if (isActive)
+			super.paint(g);
 	}
 
 }
