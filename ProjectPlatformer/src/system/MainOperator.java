@@ -1,17 +1,13 @@
 package system;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 //imports
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import listeners.PlatformerActionListener;
-import screens.GameScreen;
-import screens.OptionsScreen;
+import listeners.GameUpdater;
 import screens.Screen;
-import screens.StartScreen;
 
 @SuppressWarnings("serial")
 public class MainOperator extends JFrame {
@@ -21,23 +17,19 @@ public class MainOperator extends JFrame {
 	public static ActiveComponents activeComponent;
 	public static Timer timer;
 
-	public static StartScreen startScreen;
-	public static OptionsScreen optionsScreen;
-	public static GameScreen gameScreen;
-
-	public MainOperator() {
-
-	}
+	public static ArrayList<Screen> screens = new ArrayList<Screen>();
 
 	public static void main(String[] args) {
 		initWindow();
 		initScreens();
-		start();
+
+		// Start game
+		timerStart();
 	}
 
-	private static void start() {
-		timer = new Timer(10, new PlatformerActionListener());
-		activeComponent = ActiveComponents.START;
+	private static void timerStart() {
+		timer = new Timer(10, new GameUpdater());
+		timer.start();
 	}
 
 	private static void initWindow() {
@@ -51,37 +43,14 @@ public class MainOperator extends JFrame {
 	}
 
 	private static void initScreens() {
-		startScreen = new StartScreen();
-		optionsScreen = new OptionsScreen();
-		gameScreen = new GameScreen();
-	}
-
-	// Publics
-	public Screen getCurrentScreen() {
-		switch (activeComponent) {
-		case START:
-			return this.startScreen;
-		case OPTIONS:
-			return this.optionsScreen;
-		case GAME:
-			return this.gameScreen;
-		}
-		return null;
-	}
-
-	public void setCurrentScreen(ActiveComponents actcomp) {
-		getCurrentScreen().setActive(false);
-
-	}
-
-	// TODO Finish this Screen/Component thing
-
-	public void update(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-	}
-
-	public void paint(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
+		// screens.add(new StartScreen());
+		// screens.add(new OptionsScreen());
+		// screens.add(new GameScreen());
+		// for (Screen s : screens) {
+		// s.init();
+		// }
+		// setCurrentScreen(ActiveComponents.START);
+		// System.out.println("initialized Screen");
 	}
 
 }

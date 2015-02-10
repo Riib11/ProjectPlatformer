@@ -1,95 +1,25 @@
 package screens;
 
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import javax.swing.JComponent;
 
-public class Screen extends JComponent implements KeyListener, ActionListener,
-		MouseListener, MouseMotionListener {
+import system.Config;
+import system.MainOperator;
 
-	private boolean isActive;
+@SuppressWarnings("serial")
+public abstract class Screen extends JComponent {
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	protected boolean isActive;
+
+	public void init() {
+		setSize(Config.WINDOW_SIZE);
+		MainOperator.window.add(this);
+		setVisible(false);
 	}
 
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-	}
+	public abstract void updateScreen();
 
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-	}
+	public abstract void handleMouseInput();
 
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void setActive(boolean b) {
-		isActive = b;
-		setVisible(b);
-	}
-
-	@Override
-	public void update(Graphics g) {
-		if (isActive) {
-
-		}
-	}
-
-	@Override
-	public void paint(Graphics g) {
-		if (isActive)
-			super.paint(g);
-	}
+	public abstract void handleKeyInput();
 
 }

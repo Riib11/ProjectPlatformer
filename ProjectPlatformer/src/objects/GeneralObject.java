@@ -2,7 +2,7 @@ package objects;
 
 import java.awt.Rectangle;
 
-public class GeneralObject {
+public abstract class GeneralObject {
 	
 	private double x;
 	private double y;
