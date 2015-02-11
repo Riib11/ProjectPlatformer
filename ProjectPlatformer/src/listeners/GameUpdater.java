@@ -15,6 +15,17 @@ public class GameUpdater implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//window.stuff()
+		updateLogic();
+		updateDraw();
+	}
+
+	private void updateLogic() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void updateDraw() {
+		window.getActiveScreen().updateDraw();
+
 	}
 }

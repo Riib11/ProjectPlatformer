@@ -1,56 +1,77 @@
 package system;
 
+//imports
 import java.util.ArrayList;
 
-//imports
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import listeners.GameUpdater;
+import listeners.ScreenListener;
+import screens.GameScreen;
 import screens.Screen;
 
 @SuppressWarnings("serial")
 public class MainOperator extends JFrame {
 
 	public static MainOperator window;
-
-	public static ActiveComponents activeComponent;
 	public static Timer timer;
 
 	public static ArrayList<Screen> screens = new ArrayList<Screen>();
+	public static ArrayList<ScreenListener> listeners = new ArrayList<ScreenListener>();
 
-	public static void main(String[] args) {
+	public static Screen activeScreen;
+
+	public static void run() {
+		// Initializers:
 		initWindow();
 		initScreens();
-
-		// Start game
-		timerStart();
-	}
-
-	private static void timerStart() {
-		timer = new Timer(10, new GameUpdater());
-		timer.start();
+		initListeners();
+		// Start:
+		startGame();
 	}
 
 	private static void initWindow() {
 		window = new MainOperator();
 		window.setSize(Config.WINDOW_SIZE);
 		window.setResizable(false);
-		window.setTitle(Config.GAME_NAME);
-		window.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		window.setLocationRelativeTo(null);
+		window.setTitle(Config.WINDOW_TITLE);
 		window.setVisible(true);
 	}
 
 	private static void initScreens() {
-		// screens.add(new StartScreen());
-		// screens.add(new OptionsScreen());
-		// screens.add(new GameScreen());
-		// for (Screen s : screens) {
-		// s.init();
-		// }
-		// setCurrentScreen(ActiveComponents.START);
-		// System.out.println("initialized Screen");
+		// Instantiate Screens
+		Screen gs = new GameScreen();
+		// List Screens
+		screens.add(gs);
+		// Add Screens
+		for (Screen s : screens) {
+			window.add(s);
+			s.init();
+		}
+		setActiveScreen(screens.get(0));
+	}
+
+	private static void initListeners() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void startGame() {
+		GameUpdater gu = new GameUpdater();
+		timer = new Timer(10, gu);
+		timer.start();
+	}
+
+	public static Screen getActiveScreen() {
+		return activeScreen;
+	}
+
+	public static void setActiveScreen(Screen activeScreen) {
+		if (MainOperator.activeScreen != null)
+			MainOperator.activeScreen.setVisible(false);
+		MainOperator.activeScreen = activeScreen;
+		MainOperator.activeScreen.setVisible(true);
 	}
 
 }
