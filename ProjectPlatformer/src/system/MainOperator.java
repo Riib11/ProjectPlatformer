@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import listeners.GameScreenListener;
 import listeners.GameUpdater;
 import listeners.ScreenListener;
+import objects.Player;
 import screens.GameScreen;
 import screens.Screen;
 
@@ -46,10 +48,10 @@ public class MainOperator extends JFrame {
 		screens.add(gs);
 		// Add Screens
 		for (Screen s : screens) {
-			window.add(s);
 			s.init();
 		}
-		setActiveScreen(screens.get(0));
+		window.setActiveScreen(screens.get(0));
+		// System.out.println(window.getActiveScreen().getKeyListeners().length);
 	}
 
 	private static void initListeners() {
@@ -61,13 +63,15 @@ public class MainOperator extends JFrame {
 		GameUpdater gu = new GameUpdater();
 		timer = new Timer(10, gu);
 		timer.start();
+
+		Player.createPlayer(100, 100, 0, 0, 50, 50);
 	}
 
-	public static Screen getActiveScreen() {
+	public Screen getActiveScreen() {
 		return activeScreen;
 	}
 
-	public static void setActiveScreen(Screen activeScreen) {
+	public void setActiveScreen(Screen activeScreen) {
 		if (MainOperator.activeScreen != null)
 			MainOperator.activeScreen.setVisible(false);
 		MainOperator.activeScreen = activeScreen;

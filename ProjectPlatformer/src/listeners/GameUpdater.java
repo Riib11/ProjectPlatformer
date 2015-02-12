@@ -20,12 +20,10 @@ public class GameUpdater implements ActionListener {
 	}
 
 	private void updateLogic() {
-		// TODO Auto-generated method stub
-
+		window.getActiveScreen().updateLogic();
 	}
 
 	private void updateDraw() {
 		window.getActiveScreen().updateDraw();
-
 	}
 }
