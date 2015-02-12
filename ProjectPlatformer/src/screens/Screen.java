@@ -22,27 +22,6 @@ public abstract class Screen extends JComponent {
 	protected boolean isActive;
 	protected Graphics g;
 
-	protected Player player;
-	protected ArrayList<Enemy> enemies;
-	protected ArrayList<Platform> platforms;
-	protected ArrayList<Upgrade> upgrades;
-
-	public void addPlayer(Player p) {
-		player = p;
-	}
-
-	public void addEnemy(Enemy e) {
-		enemies.add(e);
-	}
-
-	public void addPlatform(Platform p) {
-		platforms.add(p);
-	}
-
-	public void addUpgrade(Upgrade u) {
-		upgrades.add(u);
-	}
-
 	public void init() {
 		MainOperator.window.add(this);
 		addListeners();

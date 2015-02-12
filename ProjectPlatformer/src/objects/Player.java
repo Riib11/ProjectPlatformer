@@ -37,7 +37,7 @@ public class Player extends Entity {
 		if (!(MainOperator.window.getActiveScreen() instanceof GameScreen))
 			return null;
 		Player p = new Player(x, y, vx, vy, width, height);
-		MainOperator.window.getActiveScreen().addPlayer(p);
+		((GameScreen) MainOperator.window.getActiveScreen()).addPlayer(p);
 		return p;
 	}
 }
