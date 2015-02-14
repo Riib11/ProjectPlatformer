@@ -23,7 +23,12 @@ public class Player extends Entity {
 	@Override
 	public void updateDraw(Graphics g) {
 		g.setColor(Color.BLUE);
-		g.fillRect((int) x, (int) y, (int) width, (int) height);
+		int screenX = ((GameScreen) MainOperator.window.getActiveScreen())
+				.getScreenX();
+		int screenY = ((GameScreen) MainOperator.window.getActiveScreen())
+				.getScreenY();
+		g.fillRect((int) x - screenX, (int) y - screenY, (int) width,
+				(int) height);
 	}
 
 	public void move(double vx, double vy) {

@@ -15,10 +15,13 @@ import listeners.GameScreenListener;
 @SuppressWarnings("serial")
 public class GameScreen extends Screen {
 
-	protected Player player;
-	protected ArrayList<Enemy> enemies;
-	protected ArrayList<Platform> platforms;
-	protected ArrayList<Upgrade> upgrades;
+	public Player player;
+	public ArrayList<Enemy> enemies;
+	public ArrayList<Platform> platforms;
+	public ArrayList<Upgrade> upgrades;
+
+	public int screenX = 0;
+	public int screenY = 0;
 
 	public void addPlayer(Player p) {
 		player = p;
@@ -102,6 +105,54 @@ public class GameScreen extends Screen {
 			break;
 		}
 
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	public ArrayList<Enemy> getEnemies() {
+		return enemies;
+	}
+
+	public void setEnemies(ArrayList<Enemy> enemies) {
+		this.enemies = enemies;
+	}
+
+	public ArrayList<Platform> getPlatforms() {
+		return platforms;
+	}
+
+	public void setPlatforms(ArrayList<Platform> platforms) {
+		this.platforms = platforms;
+	}
+
+	public ArrayList<Upgrade> getUpgrades() {
+		return upgrades;
+	}
+
+	public void setUpgrades(ArrayList<Upgrade> upgrades) {
+		this.upgrades = upgrades;
+	}
+
+	public int getScreenX() {
+		return screenX;
+	}
+
+	public void setScreenX(int screenX) {
+		this.screenX = screenX;
+	}
+
+	public int getScreenY() {
+		return screenY;
+	}
+
+	public void setScreenY(int screenY) {
+		this.screenY = screenY;
 	}
 
 }
