@@ -59,7 +59,7 @@ public class MainOperator extends JFrame {
 
 	private static void startGame() {
 		GameUpdater gu = new GameUpdater();
-		timer = new Timer(10, gu);
+		timer = new Timer(1, gu);
 		timer.start();
 		Storyboard.startLevel(1);
 	}

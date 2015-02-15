@@ -91,11 +91,13 @@ public abstract class GameObject {
 				(int) (((GameScreen) (MainOperator.activeScreen)).screenX + x),
 				(int) (((GameScreen) (MainOperator.activeScreen)).screenY + y),
 				(int) width, (int) height);
-		System.out
-				.println((int) (((GameScreen) (MainOperator.activeScreen)).screenX - x));
-		System.out
-				.println((int) (((GameScreen) (MainOperator.activeScreen)).screenY - y));
-		System.out.println();
+		// System.out
+		// .println((int) (((GameScreen) (MainOperator.activeScreen)).screenX -
+		// x));
+		// System.out
+		// .println((int) (((GameScreen) (MainOperator.activeScreen)).screenY -
+		// y));
+		// System.out.println();
 	}
 
 	protected void defaultDraw(Graphics g, BufferedImage img) {

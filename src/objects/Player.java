@@ -1,5 +1,7 @@
 package objects;
 
+import handlers.CollisionHandler;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -9,6 +11,9 @@ import system.MainOperator;
 
 public class Player extends Entity {
 
+	public boolean jumping;
+	public int jumpCount = -Config.PLAYER_JUMP_LENGTH;
+
 	public Player(double x, double y, double vx, double vy, double width,
 			double height) {
 		super(x, y, vx, vy, width, height);
@@ -17,6 +22,9 @@ public class Player extends Entity {
 
 	@Override
 	public boolean updateMove() {
+		if (jumping) {
+			jump();
+		}
 		if (x < 0) {
 			x = 0;
 			return false;
@@ -30,13 +38,57 @@ public class Player extends Entity {
 			y = MainOperator.window.getHeight() - height;
 			return false;
 		}
-		((GameScreen) MainOperator.activeScreen)
-				.setScreenX((int) (((GameScreen) MainOperator.activeScreen)
-						.getScreenX() - vx));
-		((GameScreen) MainOperator.activeScreen)
-				.setScreenY((int) (((GameScreen) MainOperator.activeScreen)
-						.getScreenY() - vy));
+
+		boolean a = true;
+		boolean b = true;
+
+		for (Platform plat : ((GameScreen) MainOperator.activeScreen).platforms) {
+			if (CollisionHandler.collide(this, plat)) {
+				switch (CollisionHandler.collideSide(this, plat)) {
+				case LEFT:
+					a = false;
+					break;
+				case RIGHT:
+					a = false;
+					break;
+				case TOP:
+					b = false;
+					break;
+				case BOTTOM:
+					b = false;
+					break;
+				}
+			}
+		}
+		if (a)
+			((GameScreen) MainOperator.activeScreen)
+					.setScreenX((int) (((GameScreen) MainOperator.activeScreen)
+							.getScreenX() - vx));
+		if (b)
+			((GameScreen) MainOperator.activeScreen)
+					.setScreenY((int) (((GameScreen) MainOperator.activeScreen)
+							.getScreenY() - vy));
+		System.out.println(vy);
 		return true;
+	}
+
+	private void jump() {
+		if (jumpCount < Config.PLAYER_JUMP_LENGTH) {
+			System.out.println(jumpCount);
+
+			if (jumpCount < 0) {
+				vy = -(1.0 / 1000.0) * (jumpCount/5) * (jumpCount/5);
+			} else if (jumpCount > 0) {
+				vy = (1.0 / 1000.0) * (jumpCount/5) * (jumpCount/5);
+			} else if (jumpCount == 0) {
+				vy = 0;
+			}
+			jumpCount++;
+		} else {
+			vy = 0;
+			jumpCount = -Config.PLAYER_JUMP_LENGTH;
+			jumping = false;
+		}
 	}
 
 	@Override

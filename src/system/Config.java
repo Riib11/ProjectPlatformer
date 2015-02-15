@@ -10,4 +10,6 @@ public final class Config {
 
 	public static final double PLAYER_ADJUST_Y = 100;
 
+	public static final int PLAYER_JUMP_LENGTH = 200;
+
 }

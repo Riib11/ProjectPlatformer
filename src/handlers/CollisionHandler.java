@@ -12,7 +12,7 @@ public class CollisionHandler {
 	public static boolean collide(Player p, GameObject go2) {
 		int ox = ((GameScreen) MainOperator.activeScreen).screenX;
 		int oy = ((GameScreen) MainOperator.activeScreen).screenY;
-		System.out.println(ox + " : " + oy);
+		// System.out.println(ox + " : " + oy);
 		Rectangle r1 = new Rectangle((int) (p.getX()), (int) (p.getY()),
 				(int) p.getWidth(), (int) p.getHeight());
 		Rectangle r2 = new Rectangle(

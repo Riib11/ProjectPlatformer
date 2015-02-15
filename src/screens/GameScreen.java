@@ -96,11 +96,13 @@ public class GameScreen extends Screen {
 	public void handleKeyPressedInput(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
-			player.move(-10, 0);
+			player.move(-1, 0);
 			break;
 		case KeyEvent.VK_RIGHT:
-			player.move(10, 0);
+			player.move(1, 0);
 			break;
+		case KeyEvent.VK_SPACE:
+			player.jumping = true;
 		}
 	}
 
