@@ -15,13 +15,26 @@ public class Player extends Entity {
 	}
 
 	@Override
-	public void updateMove() {
-		this.x += this.vx;
-		this.y += this.vy;
+	public boolean updateMove() {
+		if (x < 0) {
+			x = 0;
+			return false;
+		} else if (x > MainOperator.window.getWidth() - width) {
+			x = MainOperator.window.getWidth() - width;
+			return false;
+		} else if (y < 0) {
+			y = 0;
+			return false;
+		} else if (y > MainOperator.window.getHeight() - height) {
+			y = MainOperator.window.getHeight() - height;
+			return false;
+		}
+		defaultMove();
+		return true;
 	}
 
 	@Override
-	public void updateDraw(Graphics g) {
+	public boolean updateDraw(Graphics g) {
 		g.setColor(Color.BLUE);
 		int screenX = ((GameScreen) MainOperator.window.getActiveScreen())
 				.getScreenX();
@@ -29,6 +42,7 @@ public class Player extends Entity {
 				.getScreenY();
 		g.fillRect((int) x - screenX, (int) y - screenY, (int) width,
 				(int) height);
+		return true;
 	}
 
 	public void move(double vx, double vy) {
@@ -36,7 +50,7 @@ public class Player extends Entity {
 		this.vy = vy;
 	}
 
-	// Use this to create gameobjects!
+	// Use this to create the player!
 	public static Player createPlayer(double x, double y, double vx, double vy,
 			double width, double height) {
 		if (!(MainOperator.window.getActiveScreen() instanceof GameScreen))

@@ -55,9 +55,31 @@ public abstract class GameObject {
 	 * Abstracts
 	 */
 
-	public abstract void updateMove();
+	public abstract boolean updateMove();
 
-	public abstract void updateDraw(Graphics g);
+	public abstract boolean updateDraw(Graphics g);
+
+	/*
+	 * Publics
+	 */
+
+	public boolean intersects(GameObject go) {
+		if (this.x >= go.x && this.x <= go.x + go.width && this.y >= go.y
+				&& this.y <= go.y + go.height) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Protecteds
+	 */
+
+	protected void defaultMove() {
+		this.x += this.vx;
+		this.y += this.vy;
+	}
 
 	/*
 	 * Getters and Setters

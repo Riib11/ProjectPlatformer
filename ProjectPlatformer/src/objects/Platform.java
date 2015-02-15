@@ -11,13 +11,15 @@ public class Platform extends GameObject {
 	}
 
 	@Override
-	public void updateMove() {
+	public boolean updateMove() {
+		return true;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateDraw(Graphics g) {
+	public boolean updateDraw(Graphics g) {
+		return true;
 		// TODO Auto-generated method stub
 		
 	}

@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import listeners.GameScreenListener;
 import listeners.GameUpdater;
 import listeners.ScreenListener;
-import objects.Player;
 import screens.GameScreen;
 import screens.Screen;
 
@@ -63,8 +61,7 @@ public class MainOperator extends JFrame {
 		GameUpdater gu = new GameUpdater();
 		timer = new Timer(10, gu);
 		timer.start();
-
-		Player.createPlayer(100, 100, 0, 0, 50, 50);
+		Storyboard.startLevel(1);
 	}
 
 	public Screen getActiveScreen() {
