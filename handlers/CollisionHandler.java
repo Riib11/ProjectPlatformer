@@ -2,22 +2,10 @@ package handlers;
 
 import java.awt.Rectangle;
 
-/*
- * test commit
- */
-
 import objects.GameObject;
 import objects.Player;
 import screens.GameScreen;
 import system.MainOperator;
-
-
-/* 
- * test commit
- * 
- * 
- * 
- */
 
 public class CollisionHandler {
 
@@ -65,5 +53,5 @@ public class CollisionHandler {
 		}
 		return null;
 	}
-	
+
 }

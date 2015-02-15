@@ -5,12 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import listeners.GameScreenListener;
 import objects.Enemy;
 import objects.Platform;
 import objects.Player;
 import objects.Upgrade;
 import system.MainOperator;
-import listeners.GameScreenListener;
 
 @SuppressWarnings("serial")
 public class GameScreen extends Screen {
