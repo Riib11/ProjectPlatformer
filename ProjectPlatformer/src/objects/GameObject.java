@@ -1,7 +1,11 @@
 package objects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
+import screens.GameScreen;
+import system.MainOperator;
 
 public abstract class GameObject {
 
@@ -79,6 +83,26 @@ public abstract class GameObject {
 	protected void defaultMove() {
 		this.x += this.vx;
 		this.y += this.vy;
+	}
+
+	protected void defaultDraw(Graphics g, Color color) {
+		g.setColor(color);
+		g.fillRect(
+				(int) (((GameScreen) (MainOperator.activeScreen)).screenX + x),
+				(int) (((GameScreen) (MainOperator.activeScreen)).screenY + y),
+				(int) width, (int) height);
+		System.out
+				.println((int) (((GameScreen) (MainOperator.activeScreen)).screenX - x));
+		System.out
+				.println((int) (((GameScreen) (MainOperator.activeScreen)).screenY - y));
+		System.out.println();
+	}
+
+	protected void defaultDraw(Graphics g, BufferedImage img) {
+		g.drawImage(img,
+				(int) (((GameScreen) (MainOperator.activeScreen)).screenX + x),
+				(int) (((GameScreen) (MainOperator.activeScreen)).screenY + y),
+				(int) width, (int) height, null);
 	}
 
 	/*

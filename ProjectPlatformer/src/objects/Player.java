@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import screens.GameScreen;
+import system.Config;
 import system.MainOperator;
 
 public class Player extends Entity {
@@ -29,19 +30,25 @@ public class Player extends Entity {
 			y = MainOperator.window.getHeight() - height;
 			return false;
 		}
-		defaultMove();
+		((GameScreen) MainOperator.activeScreen)
+				.setScreenX((int) (((GameScreen) MainOperator.activeScreen)
+						.getScreenX() - vx));
+		((GameScreen) MainOperator.activeScreen)
+				.setScreenY((int) (((GameScreen) MainOperator.activeScreen)
+						.getScreenY() - vy));
 		return true;
 	}
 
 	@Override
 	public boolean updateDraw(Graphics g) {
 		g.setColor(Color.BLUE);
-		int screenX = ((GameScreen) MainOperator.window.getActiveScreen())
-				.getScreenX();
-		int screenY = ((GameScreen) MainOperator.window.getActiveScreen())
-				.getScreenY();
-		g.fillRect((int) x - screenX, (int) y - screenY, (int) width,
-				(int) height);
+		g.fillRect((int) x, (int) y, (int) width, (int) height);
+		// g.fillRect(
+		// (int) (((1 / 2) * Config.WINDOW_SIZE.getWidth()) - ((1 / 2) *
+		// width)),
+		// (int) (((1 / 2) * Config.WINDOW_SIZE.getHeight()) - ((1 / 2) *
+		// height)),
+		// (int) width, (int) height);
 		return true;
 	}
 

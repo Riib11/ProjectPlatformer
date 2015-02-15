@@ -16,9 +16,9 @@ import listeners.GameScreenListener;
 public class GameScreen extends Screen {
 
 	public Player player;
-	public ArrayList<Enemy> enemies;
-	public ArrayList<Platform> platforms;
-	public ArrayList<Upgrade> upgrades;
+	public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	public ArrayList<Platform> platforms = new ArrayList<Platform>();
+	public ArrayList<Upgrade> upgrades = new ArrayList<Upgrade>();
 
 	public int screenX = 0;
 	public int screenY = 0;
@@ -32,6 +32,7 @@ public class GameScreen extends Screen {
 	}
 
 	public void addPlatform(Platform p) {
+		System.out.println(platforms);
 		platforms.add(p);
 	}
 
@@ -54,6 +55,15 @@ public class GameScreen extends Screen {
 	public void paintComponent(Graphics g) {
 		if (player != null)
 			player.updateDraw(g);
+		if (enemies.size() != 0)
+			for (Enemy e : enemies)
+				e.updateDraw(g);
+		if (platforms.size() != 0)
+			for (Platform plat : platforms)
+				plat.updateDraw(g);
+		if (upgrades.size() != 0)
+			for (Upgrade u : upgrades)
+				u.updateDraw(g);
 	}
 
 	@Override

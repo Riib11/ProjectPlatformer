@@ -1,6 +1,10 @@
 package objects;
 
+import java.awt.Color;
 import java.awt.Graphics;
+
+import screens.GameScreen;
+import system.MainOperator;
 
 public class Platform extends GameObject {
 
@@ -14,14 +18,23 @@ public class Platform extends GameObject {
 	public boolean updateMove() {
 		return true;
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public boolean updateDraw(Graphics g) {
+		defaultDraw(g, Color.BLACK);
 		return true;
-		// TODO Auto-generated method stub
-		
+	}
+
+	// Use this to create the player!
+	public static Platform createPlatform(double x, double y, double vx,
+			double vy, double width, double height) {
+		if (!(MainOperator.window.getActiveScreen() instanceof GameScreen))
+			return null;
+		Platform plat = new Platform(x, y, vx, vy, width, height);
+		((GameScreen) MainOperator.window.getActiveScreen()).addPlatform(plat);
+		return plat;
 	}
 
 }
