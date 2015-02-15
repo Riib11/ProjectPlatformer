@@ -1,5 +1,6 @@
 package objects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Enemy extends Entity {
@@ -12,15 +13,15 @@ public class Enemy extends Entity {
 
 	@Override
 	public boolean updateMove() {
+		defaultMove();
 		return true;
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean updateDraw(Graphics g) {
+		defaultDraw(g, Color.RED);
 		return true;
-		// TODO Auto-generated method stub
 	}
 
 }

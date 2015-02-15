@@ -1,5 +1,6 @@
 package objects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Upgrade extends GameObject {
@@ -12,14 +13,14 @@ public class Upgrade extends GameObject {
 
 	@Override
 	public boolean updateMove() {
+		defaultMove();
 		return true;
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public boolean updateDraw(Graphics g) {
+		defaultDraw(g, Color.GREEN);
 		return true;
-		// TODO Auto-generated method stub
 	}
 
 }

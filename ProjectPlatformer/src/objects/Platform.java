@@ -16,9 +16,8 @@ public class Platform extends GameObject {
 
 	@Override
 	public boolean updateMove() {
+		defaultMove();
 		return true;
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
